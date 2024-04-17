@@ -1,12 +1,12 @@
-import { Route, Routes} from 'react-router-dom';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import './App.css';
 import Header from './Header';
-import Dashboard from './Dashboard';
-import KeyRequests from './KeyRequests';
-import Users from './Users'; // Assuming you have a Users component
-import React, { useEffect, useRef } from "react";
-import "../Login/Login.css";
+import Dashboard from './Dashboard'; // Updated import path
+import KeyRequests from './KeyRequests'; // Updated import path
+import Users from './Users'; // Updated import path
+
 function App() {
   return (
     <div className="App">
@@ -14,10 +14,10 @@ function App() {
       <div className="Content">
         <Header />
         <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/key-requests" element={<KeyRequests />} />
-            <Route path="/users" element={<Users />} />
+          <Route path="/" element={<Dashboard />} /> {/* Dashboard route */}
+          <Route path="/dashboard" element={<Dashboard />}  /> {/* Dashboard route */}
+          <Route path="/key-requests" element={<KeyRequests />} /> {/* Key Requests route */}
+          <Route path="/users" element={<Users />} /> {/* Users route */}
         </Routes>
       </div>
     </div>

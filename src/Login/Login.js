@@ -32,7 +32,7 @@ const Login = () => {
       setFormSubmitted(true);
       setLoggedInUser({ username, role: toggle ? 'Admin' : 'User' });
       // Depending on the role, navigate to the respective component
-      navigate(toggle ? '/app' : '/user'); // Navigate to '/app' for admin
+      navigate(toggle ? '/dashboard' : '/user'); // Navigate to '/app' for admin
     }
   };
   

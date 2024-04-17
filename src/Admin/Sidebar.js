@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Dashboard from "./Dashboard";
 
 function Sidebar() {
   return (
@@ -12,8 +11,8 @@ function Sidebar() {
         <hr />
         <ul>
           <li><Link to="/dashboard">Dashboard</Link></li>
-          <li><Link to="/key-requests">Key Requests</Link></li>
-          <li><Link to="/users">Users</Link></li>
+          <li><Link to="/dashboard/key-requests">KeyRequests</Link></li> {/* Updated path */}
+          <li><Link to="/dashboard/users">Users</Link></li> {/* Updated path */}
         </ul>
       </div>
       <div className="Copyright">
