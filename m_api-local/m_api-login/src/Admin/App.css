@@ -1,0 +1,156 @@
+.App {
+  display: flex;
+}
+
+/*.Sidebar {*/
+/*  !* Adjust width as needed *!*/
+/*  width: 200px;*/
+/*  background-color: black;*/
+/*  color: white; !* You might want to change the text color to make it visible *!*/
+/*}*/
+
+.Sidebar ul li a {
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center the text horizontally */
+  align-items: center; /* Center the text vertically */
+  width: 150px; /* Set a fixed width */
+  height: 40px; /* Set a fixed height */
+  color: white;
+  background-color: #30475E;
+  padding: 10px 20px;
+  margin: 10px 0;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.Sidebar ul li a:hover {
+  background-color: #396475;
+}
+
+.Header {
+  background-color: grey;
+  color: black; /* You might want to change the text color to make it visible */
+  min-height: 50px;
+}
+
+.Content {
+  flex-grow: 1;
+  background-color:  #121212;
+  overflow-y: clip; /* This will block vertical scrolling */
+}
+
+.Profile {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.ProfileIcon {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.Sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh; /* This will make the sidebar take the full height of the viewport */
+  align-items: center;
+  width: 200px;
+  background-color: black;
+  color: white;
+  padding: 20px;
+}
+
+.Logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Logo img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+}
+
+.Logo p {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 10px 0;
+}
+
+.Copyright p {
+  color: rgba(255, 255, 255, 0.5); /* Faint white */
+}
+
+.ChipRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px; /* Adjust the padding as needed */
+}
+
+.GlobeContainer {
+  position: fixed; /* or absolute, depending on your layout */
+  bottom: -170px;
+  right: -120px;
+  z-index: 1000; /* adjust as needed */
+}
+
+.ChartPlaceholder {
+  background-color: #30475E; /* This will give it a solid color */
+  height: 350px; /* Adjust the height as needed */
+  /*padding: 50px;*/
+  margin-left: 30px; /* This will give it a small amount of padding on the left */
+  margin-right: 300px; /* This will make it extend till the globe on the right */
+  margin-top: 30px;
+  border-radius: 25px;
+}
+
+.KeyRequestPlaceholder {
+  background-color: #30475E; /* This will give it a solid color */
+  height: 500px; /* Adjust the height as needed */
+  margin: 20px; /* This will give it some space around */
+  border-radius: 25px;
+}
+
+.ArrowButton {
+  background-color: white;
+  border: none;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.ArrowButton.Left {
+  float: left;
+}
+
+.ArrowButton.Right {
+  float: right;
+}
+
+.ArrowButtons {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* This will give some space between the buttons */
+}
+
+.UsersPlaceholder {
+  background-color: #30475E; /* This will give it a solid color */
+  height: 500px; /* Adjust the height as needed */
+  margin: 20px; /* This will give it some space around */
+  border-radius: 25px;
+}
