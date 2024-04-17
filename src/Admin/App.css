@@ -37,7 +37,6 @@
 .Content {
   flex-grow: 1;
   background-color:  #121212;
-  overflow-y: clip; /* This will block vertical scrolling */
 }
 
 .Profile {
