@@ -7,7 +7,7 @@ function KeyRequests() {
 
   useEffect(()=>{
     async function getData(){
-      const { data, error } = await supabase.from("key_request").select();
+      const { data, error } = await supabase.rpc("get_key_requests");
       if (error) {
         console.error('Error fetching data:', error);
       } else {
@@ -29,9 +29,15 @@ function KeyRequests() {
     <div>
       <div className="KeyRequestPlaceholder">
         <h1>Key Requests</h1>
-        {keyRequests[currentIndex] && Object.keys(keyRequests[currentIndex]).map(key => (
-        <p key={key}>{`${key.charAt(0).toUpperCase() + key.slice(1)}: ${keyRequests[currentIndex][key]}`}</p>
-      ))}
+        {keyRequests[currentIndex] && (
+          <>
+            <p>Request ID: {keyRequests[currentIndex].request_id}</p>
+            <p>User ID: {keyRequests[currentIndex].user_id}</p>
+            <p>Request Reason: {keyRequests[currentIndex].request_reason}</p>
+            <p>Request Tier: {keyRequests[currentIndex].request_tier}</p>
+            <p>Username: {keyRequests[currentIndex].username}</p>
+          </>
+        )}
       </div>
       <div className="ArrowButtons">
         <button className="ArrowButton Left" onClick={() => handleArrowClick('left')}>←</button>
