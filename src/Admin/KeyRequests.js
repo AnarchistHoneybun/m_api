@@ -25,6 +25,29 @@ function KeyRequests() {
     }
   }
 
+  async function getData() {
+    const { data, error } = await supabase.rpc("get_key_requests");
+    if (error) {
+      console.error("Error fetching data:", error);
+    } else {
+      setKeyRequests(data);
+    }
+  }
+
+  async function handleDenyClick() {
+    const currentRequest = keyRequests[currentIndex];
+    const { error } = await supabase
+        .from('key_request')
+        .delete()
+        .eq('request_id', currentRequest.request_id);
+
+    if (error) {
+      console.error("Error deleting data:", error);
+    } else {
+      getData(); // Fetch the data again after deletion
+    }
+  }
+
   return (
     <div>
       <div className="KeyRequestPlaceholder">
@@ -41,7 +64,7 @@ function KeyRequests() {
           )}
         </div>
         <div className="Approval">
-          <button className="ApprovalButton DenyRequest">Deny</button>
+          <button className="ApprovalButton DenyRequest" onClick={handleDenyClick}>Deny</button>
           <button className="ApprovalButton ApproveRequest">Approve</button>
         </div>
       </div>
