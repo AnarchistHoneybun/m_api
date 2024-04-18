@@ -238,3 +238,12 @@ ul li {
   border: 1px solid black; /* Add lines to denote rows and columns */
   padding: 10px; /* Add padding inside cells */
 }
+.UserText{
+  color: white;
+}
+.UsersTable{
+  width: 100%;
+}
+.ViewKeyButton{
+  width: 40%;
+}

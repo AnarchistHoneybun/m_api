@@ -45,32 +45,32 @@ function Users() {
 
   return (
       <div>
-        <h1>Users</h1>
-        <table className="UsersTable">
-          <thead>
-          <tr>
-            <th>User ID</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>API Keys</th>
-          </tr>
-          </thead>
-          <tbody>
-          {/* Render the user data */}
-          {users.map(user => (
-              <tr key={user.user_id}>
-                {/* Render the user fields */}
-                <td>{user.user_id}</td>
-                <td>{user.username}</td>
-                <td>{user.email}</td>
-                {/* New email column */}
-                <td>
-                  <button onClick={() => openModal(user.user_id, user.username)}>View API Keys</button>
-                </td>
-              </tr>
-          ))}
-          </tbody>
-        </table>
+        <h1 className="UserText">Users</h1>
+          <table className="UsersTable">
+            <thead>
+            <tr>
+              <th className="UserText">User ID</th>
+              <th className="UserText">Username</th>
+              <th className="UserText">Email</th>
+              <th className="UserText">API Keys</th>
+            </tr>
+            </thead>
+            <tbody>
+            {/* Render the user data */}
+            {users.map(user => (
+                <tr key={user.user_id}>
+                  {/* Render the user fields */}
+                  <td className="UserText">{user.user_id}</td>
+                  <td className="UserText">{user.username}</td>
+                  <td className="UserText">{user.email}</td>
+                  {/* New email column */}
+                  <td>
+                    <button className="ViewKeyButton" onClick={() => openModal(user.user_id, user.username)}>View API Keys</button>
+                  </td>
+                </tr>
+            ))}
+            </tbody>
+          </table>
 
         <Modal
             isOpen={modalIsOpen}
