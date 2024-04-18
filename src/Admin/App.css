@@ -124,8 +124,34 @@ ul li {
   height: 500px; /* Adjust the height as needed */
   margin: 20px; /* This will give it some space around */
   border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-
+.KeyRequestInfo{
+  display: flex;
+  flex-direction: column;
+}
+.Approval{
+  display: flex;
+  margin-bottom: 15px;
+}
+.ApprovalButton{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.DenyRequest{
+  background-color: red;
+}
+.DenyRequest:hover{
+  background-color: darkred;
+}
+.ApproveRequest{
+  background-color: green;
+}
+.ApproveRequest:hover{
+  background-color: greenyellow;
+}
 .ArrowButton {
   background-color: white;
   border: none;
