@@ -28,16 +28,22 @@ function KeyRequests() {
   return (
     <div>
       <div className="KeyRequestPlaceholder">
+        <div className="KeyRequestInfo">
         <h1>Key Requests</h1>
-        {keyRequests[currentIndex] && (
-          <>
-            <p>Request ID: {keyRequests[currentIndex].request_id}</p>
-            <p>User ID: {keyRequests[currentIndex].user_id}</p>
-            <p>Request Reason: {keyRequests[currentIndex].request_reason}</p>
-            <p>Request Tier: {keyRequests[currentIndex].request_tier}</p>
-            <p>Username: {keyRequests[currentIndex].username}</p>
-          </>
-        )}
+          {keyRequests[currentIndex] && (
+            <>
+              <p>Request ID: {keyRequests[currentIndex].request_id}</p>
+              <p>User ID: {keyRequests[currentIndex].user_id}</p>
+              <p>Request Reason: {keyRequests[currentIndex].request_reason}</p>
+              <p>Request Tier: {keyRequests[currentIndex].request_tier}</p>
+              <p>Username: {keyRequests[currentIndex].username}</p>
+            </>
+          )}
+        </div>
+        <div className="Approval">
+          <button className="ApprovalButton DenyRequest">Deny</button>
+          <button className="ApprovalButton ApproveRequest">Approve</button>
+        </div>
       </div>
       <div className="ArrowButtons">
         <button className="ArrowButton Left" onClick={() => handleArrowClick('left')}>←</button>
