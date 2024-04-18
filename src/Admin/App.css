@@ -241,3 +241,9 @@ ul li {
 .UserText{
   color: white;
 }
+.UsersTable{
+  width: 100%;
+}
+.ViewKeyButton{
+  width: 40%;
+}
