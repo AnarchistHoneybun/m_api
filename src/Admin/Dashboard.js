@@ -3,6 +3,7 @@ import supabase from '../lib/supabase-client';
 import Chip from './Chip';
 import Globe from './Globe';
 import LineChart from "./LineChart";
+import BubbleChart from './BubbleChart';
 
 function Dashboard() {
   const [totalUsers, setTotalUsers] = useState(0);
@@ -55,7 +56,7 @@ function Dashboard() {
               <Chip color="#30475E" header="Total Requests" value={totalRequests}/>
           </div>
           <div className="ChartPlaceholder">
-                <LineChart/>
+                <BubbleChart/>
           </div>
           <div className="GlobeContainer">
               <Globe/>
