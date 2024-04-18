@@ -153,3 +153,28 @@ ul li {
   margin: 20px; /* This will give it some space around */
   border-radius: 25px;
 }
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header {
+  text-align: center;
+}
+
+.modal-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modal-table th, .modal-table td {
+  border: 1px solid black;
+}
+
+.modal-close-button {
+  align-self: flex-end;
+  margin-top: auto;
+}
