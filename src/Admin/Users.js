@@ -7,6 +7,7 @@ function Users() {
   const [apiKeys, setApiKeys] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentUserId, setCurrentUserId] = useState(null);
+  const [currentUsername, setCurrentUsername] = useState(null);
 
   useEffect(()=>{
     async function getData(){
@@ -32,8 +33,9 @@ function Users() {
     getData();
   },[])
 
-  const openModal = (userId) => {
+  const openModal = (userId, username) => {
     setCurrentUserId(userId);
+    setCurrentUsername(username); // Store the username
     setModalIsOpen(true);
   }
 
@@ -42,54 +44,66 @@ function Users() {
   }
 
   return (
-    <div>
-      <h1>Users</h1>
-      <table className="UsersTable">
-        {/* Render the user data */}
-        {users.map(user => (
-          <tr key={user.user_id}>
-            {/* Render the user fields */}
-            <td>{user.user_id}</td>
-            <td>{user.username}</td>
-            <td>
-              <button onClick={() => openModal(user.user_id)}>View API Keys</button>
-            </td>
+      <div>
+        <h1>Users</h1>
+        <table className="UsersTable">
+          <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>API Keys</th>
           </tr>
-        ))}
-      </table>
+          </thead>
+          <tbody>
+          {/* Render the user data */}
+          {users.map(user => (
+              <tr key={user.user_id}>
+                {/* Render the user fields */}
+                <td>{user.user_id}</td>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+                {/* New email column */}
+                <td>
+                  <button onClick={() => openModal(user.user_id, user.username)}>View API Keys</button>
+                </td>
+              </tr>
+          ))}
+          </tbody>
+        </table>
 
-      <Modal
-  isOpen={modalIsOpen}
-  onRequestClose={closeModal}
-  contentLabel="API Keys Modal"
-  className="modal-content"
->
-  <h2 className="modal-header">API Keys for User {currentUserId}</h2>
-  <table className="modal-table">
-    <thead>
-      <tr>
-        <th>Key ID</th>
-        <th>Key Name</th>
-        <th>Billing Date</th>
-        <th>Expiry Date</th>
-        <th>Tier ID</th>
-      </tr>
-    </thead>
-    <tbody>
-      {apiKeys[currentUserId] && apiKeys[currentUserId].map(key => (
-        <tr key={key.key_id}>
-          <td>{key.key_id}</td>
-          <td>{key.key_name}</td>
-          <td>{key.billing_date}</td>
-          <td>{key.expiry_date}</td>
-          <td>{key.tier_id}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-  <button onClick={closeModal} className="modal-close-button">Close</button>
-</Modal>
-    </div>
+        <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            contentLabel="API Keys Modal"
+            className="modal-content"
+        >
+          <h2 className="modal-header">{currentUsername}'s API Keys</h2>
+          <table className="modal-table">
+            <thead>
+            <tr>
+              <th>Key ID</th>
+              <th>Key Name</th>
+              <th>Billing Date</th>
+              <th>Expiry Date</th>
+              <th>Tier ID</th>
+            </tr>
+            </thead>
+            <tbody>
+            {apiKeys[currentUserId] && apiKeys[currentUserId].map(key => (
+                <tr key={key.key_id}>
+                  <td>{key.key_id}</td>
+                  <td>{key.key_name}</td>
+                  <td>{key.billing_date}</td>
+                  <td>{key.expiry_date}</td>
+                  <td>{key.tier_id}</td>
+                </tr>
+            ))}
+            </tbody>
+          </table>
+          <button onClick={closeModal} className="modal-close-button">X</button> {/* Change "Close" to "X" */}
+        </Modal>
+      </div>
   );
 }
 

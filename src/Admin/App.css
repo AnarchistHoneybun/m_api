@@ -154,12 +154,6 @@ ul li {
   border-radius: 25px;
 }
 
-.modal-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
 
 .modal-header {
   text-align: center;
@@ -174,7 +168,47 @@ ul li {
   border: 1px solid black;
 }
 
+.modal-content {
+  position: fixed; /* Position the modal in the center of the screen */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white; /* Change the background color to white */
+  border-radius: 10px; /* Make the modal a rounded rectangle */
+  width: 80%; /* Set the width of the modal */
+  max-width: 500px; /* Set a maximum width for the modal */
+  padding: 20px; /* Add some padding */
+  outline: none; /* Remove the default outline */
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Add a shadow for a pop-up effect */
+}
+
 .modal-close-button {
-  align-self: flex-end;
-  margin-top: auto;
+  position: absolute; /* Position the button at the top right of the modal */
+  top: 10px;
+  right: 10px;
+  background: none; /* Remove the default background */
+  border: none; /* Remove the default border */
+  font-size: 1.5em; /* Increase the font size */
+  cursor: pointer; /* Change the cursor when hovering over the button */
+  width: 30px;
+  height: 30px;
+  display: flex; /* Enable flexbox */
+  justify-content: center; /* Center the content horizontally */
+  align-items: center;
+  background-color: red;
+}
+
+.modal-close-button:hover {
+  background-color: rgba(1, 0, 0, 0.5); /* Slight highlight on hover */
+}
+
+.UsersTable {
+  margin: auto; /* Center the table */
+  padding: 20px; /* Add padding */
+  border-collapse: collapse; /* Remove space between borders */
+}
+
+.UsersTable th, .UsersTable td {
+  border: 1px solid black; /* Add lines to denote rows and columns */
+  padding: 10px; /* Add padding inside cells */
 }
