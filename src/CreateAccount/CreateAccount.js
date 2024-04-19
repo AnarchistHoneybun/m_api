@@ -7,10 +7,12 @@ import "react-toastify/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 const CreateAccount = () => {
-  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [idType, setIdType] = useState("");
+  const [idValue, setIdValue] = useState("");
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
@@ -20,7 +22,7 @@ const CreateAccount = () => {
     if (password !== repeatPassword) {
       setError("Passwords do not match");
     } else {
-      async function createNewUser(userEmail, userPassword) {
+      async function createNewUser(userEmail, userPassword, username, idType, idValue) {
         let res = await supabase.auth.signUp({
           email: userEmail,
           password: userPassword,
@@ -29,11 +31,11 @@ const CreateAccount = () => {
           toast(res.error.message, { type: "error" });
         } else {
           res = await supabase.from("users").insert({
-            username: "a",
+            username: username,
             password: password,
             email: email,
-            id_type: "a",
-            id_value: "a",
+            id_type: idType,
+            id_value: idValue,
             user_uuid: res.data.session.user.id,
           });
 
@@ -47,15 +49,17 @@ const CreateAccount = () => {
             }else{
               navigate("/user");
             }
-            setFullName("");
             setEmail("");
             setPassword("");
             setRepeatPassword("");
+            setUsername("");
+            setIdType("");
+            setIdValue("");
             setError("");
           }
         }
       }
-      createNewUser(email, password);
+      createNewUser(email, password, username, idType, idValue);
       // Reset fields after successful submission
     }
   };
@@ -66,12 +70,34 @@ const CreateAccount = () => {
       {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="fullName">Full Name</label>
+          <label htmlFor="username">Username</label>
           <input
             type="text"
-            id="fullName"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            className="input"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="idType">ID Type</label>
+          <input
+            type="text"
+            id="idType"
+            value={idType}
+            onChange={(e) => setIdType(e.target.value)}
+            required
+            className="input"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="idValue">ID Value</label>
+          <input
+            type="text"
+            id="idValue"
+            value={idValue}
+            onChange={(e) => setIdValue(e.target.value)}
             required
             className="input"
           />

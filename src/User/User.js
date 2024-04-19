@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import supabase from '../lib/supabase-client';
 import './User.css';
 
 function User() {
   const [selectedOption, setSelectedOption] = useState('');
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate('/');
+  };
 
   return (
     <div className="app">
@@ -11,9 +19,9 @@ function User() {
           <div className="hello-user-section">
             <div className="hello-user">Hello User</div>
             <select
-              className="dropdown"
-              value={selectedOption}
-              onChange={(e) => setSelectedOption(e.target.value)}
+                className="dropdown"
+                value={selectedOption}
+                onChange={(e) => setSelectedOption(e.target.value)}
             >
               <option value="">Select an Option</option>
               <option value="A">A</option>
@@ -24,6 +32,7 @@ function User() {
             </select>
           </div>
           <div className="buy-key">Buy Key</div>
+          <button onClick={handleLogout}>Log Out</button>
         </div>
       </header>
       <main className="content">
