@@ -1,26 +1,62 @@
-import React, { useState } from 'react';
-import './CreateAccount.css';
+import React, { useState } from "react";
+import "./CreateAccount.css";
+import supabase from "../lib/supabase-client";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const CreateAccount = () => {
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
-  const [error, setError] = useState('');
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== repeatPassword) {
-      setError('Passwords do not match');
+      setError("Passwords do not match");
     } else {
-      // Here you can handle the form submission, like sending the data to a server
-      console.log('Form submitted:', { fullName, email, password });
+      async function createNewUser(userEmail, userPassword) {
+        let res = await supabase.auth.signUp({
+          email: userEmail,
+          password: userPassword,
+        });
+        if (res.error) {
+          toast(res.error.message, { type: "error" });
+        } else {
+          res = await supabase.from("users").insert({
+            username: "a",
+            password: password,
+            email: email,
+            id_type: "a",
+            id_value: "a",
+            user_uuid: res.data.session.user.id,
+          });
+
+          if (res.error) {
+            toast(res.error.message, { type: "error" });
+          } else {
+            toast("Successfully created new account!", { type: "success" });
+            res = await supabase.auth.signInWithPassword({email: email, password: password});
+            if(res.error){
+              toast("Sign in error. Please try signing in again", {type: error})
+            }else{
+              navigate("/user");
+            }
+            setFullName("");
+            setEmail("");
+            setPassword("");
+            setRepeatPassword("");
+            setError("");
+          }
+        }
+      }
+      createNewUser(email, password);
       // Reset fields after successful submission
-      setFullName('');
-      setEmail('');
-      setPassword('');
-      setRepeatPassword('');
-      setError('');
     }
   };
 
@@ -73,8 +109,11 @@ const CreateAccount = () => {
             className="input"
           />
         </div>
-        <button type="submit" className="button">Create Account</button>
+        <button type="submit" className="button">
+          Create Account
+        </button>
       </form>
+      <ToastContainer />
     </div>
   );
 };
