@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./CreateAccount.css";
 import supabase from "../lib/supabase-client";
+import {SHA256} from "crypto-js";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
@@ -30,9 +31,10 @@ const CreateAccount = () => {
         if (res.error) {
           toast(res.error.message, { type: "error" });
         } else {
+          const hashedPassword = SHA256(password).toString();
           res = await supabase.from("users").insert({
             username: username,
-            password: password,
+            password: hashedPassword,
             email: email,
             id_type: idType,
             id_value: idValue,

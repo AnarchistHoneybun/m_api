@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../index.css";
 import supabase from "../lib/supabase-client";
 import { ToastContainer, toast } from "react-toastify";
+import {SHA256} from "crypto-js";
 
 const Login = () => {
   const canvasRef = useRef();
@@ -33,12 +34,14 @@ const Login = () => {
     if (username && password) {
       // setFormSubmitted(true);
       // setLoggedInUser({ username, role: toggle ? 'Admin' : 'User' });
+      // const hashedPassword = SHA256(password).toString();
+      const hashedPassword = password;
       console.log(toggle);
       if (!toggle) {
         async function signIn() {
           let res = await supabase.auth.signInWithPassword({
             email: username,
-            password: password,
+            password: hashedPassword,
           });
           if (res.error) {
             toast(res.error.message, { type: "error" });
@@ -53,7 +56,7 @@ const Login = () => {
             .from("users")
             .select("*")
             .eq("email", username)
-            .eq("password", password);
+            .eq("password", hashedPassword);
           if (res.error) {
             toast(res.error.message, { type: "error" });
           } else {
