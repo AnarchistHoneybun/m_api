@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+button:disabled{
+  background: gray;
+}
+button:disabled:hover{
+  background: gray;
+}

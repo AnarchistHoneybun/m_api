@@ -3,8 +3,10 @@ import './Login.css';
 import createGlobe from "cobe";
 import { useNavigate } from "react-router-dom";
 import '../index.css';
+import supabase from "../lib/supabase-client";
+import { ToastContainer, toast } from 'react-toastify';
 
-const Login = () => {
+const Login = () => {  
   const canvasRef = useRef();
   const [toggle, setToggle] = useState(false);
   const [username, setUsername] = useState('');
@@ -29,10 +31,24 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (username && password) {
-      setFormSubmitted(true);
-      setLoggedInUser({ username, role: toggle ? 'Admin' : 'User' });
-      // Depending on the role, navigate to the respective component
-      navigate(toggle ? '/dashboard' : '/user'); // Navigate to '/app' for admin
+      // setFormSubmitted(true);
+      // setLoggedInUser({ username, role: toggle ? 'Admin' : 'User' });
+      console.log(toggle);
+      if(!toggle){
+        async function signIn(){
+          let res = await supabase.auth.signInWithPassword({email: username, password: password});
+          if(res.error){
+            toast(res.error.message, {type: "error"});
+          }else{
+            navigate("/user")
+          }
+        }
+        signIn();
+      }else{
+        navigate("/dashboard")
+      }
+    }else{
+      toast("Error logging in. Please try again!", {type: "error"});
     }
   };
   
@@ -89,13 +105,13 @@ const Login = () => {
       ) : (
         <form className="form-container" onSubmit={handleSubmit}>
           <h2>{toggle ? 'Admin Login' : 'User Login'}</h2>
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username">E-Mail:</label>
           <input
-            type="text"
+            type="email"
             id="username"
             value={username}
             onChange={handleUsernameChange}
-            placeholder="Enter your username"
+            placeholder="Enter your email"
             required
           />
           <label htmlFor="password">Password:</label>
@@ -108,7 +124,7 @@ const Login = () => {
             required
           />
           <div> {/* Added div wrapper */}
-            <button type="submit" disabled={!username || !password || formSubmitted}>
+            <button type="submit" disabled={!username || (password.length<6) || formSubmitted}>
               {formSubmitted ? 'Logging In...' : 'Login'}
             </button>
             {!toggle && (
@@ -127,6 +143,7 @@ const Login = () => {
           <span>Admin</span>
         </div>
       )}
+    <ToastContainer/>
     </div>
   );
 };
