@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import supabase from "../lib/supabase-client";
+import { generate, count } from "random-words";
 
 function KeyRequests() {
   const [keyRequests, setKeyRequests] = useState([]);
@@ -48,6 +49,41 @@ function KeyRequests() {
     }
   }
 
+  async function handleApproveClick() {
+    const currentRequest = keyRequests[currentIndex];
+    const {error: deleteError} = await supabase
+        .from('key_request')
+        .delete()
+        .eq('request_id', currentRequest.request_id);
+
+    if (deleteError) {
+      console.error("Error deleting data:", deleteError);
+    } else {
+      const apiKey = `${generate({ minLength: 4, maxLength: 7 }).toUpperCase()}-${generate({ minLength: 5, maxLength: 9 }).toUpperCase()}`;
+      const billingDate = new Date();
+      const expiryDate = new Date();
+      expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+
+      const {error: insertError} = await supabase
+          .from('api_key')
+          .insert([
+            {
+              key_name: apiKey,
+              user_id: currentRequest.user_id,
+              billing_date: billingDate,
+              expiry_date: expiryDate,
+              tier_id: currentRequest.request_tier
+            },
+          ]);
+
+      if (insertError) {
+        console.error("Error inserting data:", insertError);
+      } else {
+        getData(); // Fetch the data again after approval
+      }
+    }
+  }
+
   return (
     <div>
       <div className="KeyRequestPlaceholder">
@@ -65,7 +101,7 @@ function KeyRequests() {
         </div>
         <div className="Approval">
           <button className="ApprovalButton DenyRequest" onClick={handleDenyClick}>Deny</button>
-          <button className="ApprovalButton ApproveRequest">Approve</button>
+          <button className="ApprovalButton ApproveRequest" onClick={handleApproveClick}>Approve</button>
         </div>
       </div>
       <div className="ArrowButtons">
