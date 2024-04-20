@@ -29,14 +29,15 @@
 }
 
 .Header {
-  background-color: grey;
-  color: black; /* You might want to change the text color to make it visible */
+  background-color: #212631;
+  color: #f3f4f7; /* You might want to change the text color to make it visible */
   min-height: 50px;
+  border: 0.1px solid #6b7785;
 }
 
 .Content {
   flex-grow: 1;
-  background-color:  #121212;
+  background-color:  #1d222b;
 }
 
 .Profile {
@@ -60,9 +61,11 @@
   height: 100vh; /* This will make the sidebar take the full height of the viewport */
   align-items: center;
   width: 200px;
-  background-color: black;
-  color: white;
+  background-color: #212631;
+  color: #f3f4f7;
   padding: 20px;
+  border: 0.1px solid #6b7785;
+
 }
 
 .Logo {
@@ -93,7 +96,7 @@ ul li {
 }
 
 .Copyright p {
-  color: rgba(255, 255, 255, 0.5); /* Faint white */
+  color: #f3f4f7; /* Faint white */
 }
 
 .ChipRow {
@@ -110,27 +113,31 @@ ul li {
 }
 
 .ChartPlaceholder {
-  background-color: #30475E; /* This will give it a solid color */
+  background-color: #212631; /* This will give it a solid color */
   height: 350px; /* Adjust the height as needed */
-  /*padding: 50px;*/
   margin-left: 30px; /* This will give it a small amount of padding on the left */
   margin-right: 300px; /* This will make it extend till the globe on the right */
   margin-top: 30px;
   border-radius: 25px;
+  border: 0.1px solid #6b7785;
 }
 
 .KeyRequestPlaceholder {
-  background-color: #30475E; /* This will give it a solid color */
+  background-color: #212631; /* This will give it a solid color */
   height: 500px; /* Adjust the height as needed */
-  margin: 20px; /* This will give it some space around */
+  margin-top: 20px; /* This will give it some space around */
+  margin-left: 20px;
+  margin-right: 20px;
   border-radius: 25px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: 0.1px solid #6b7785;
 }
 .KeyRequestInfo{
   display: flex;
   flex-direction: column;
+  color: #f3f4f7;
 }
 .Approval{
   display: flex;
@@ -141,22 +148,33 @@ ul li {
   margin-right: 10px;
 }
 .DenyRequest{
-  background-color: red;
+  background-color: #db5d5d;
 }
 .DenyRequest:hover{
-  background-color: darkred;
+  background-color: #b94a4a;
 }
 .ApproveRequest{
-  background-color: green;
+  background-color: #249542;
 }
 .ApproveRequest:hover{
-  background-color: greenyellow;
+  background-color: #1e7d36;
 }
 .ArrowButton {
-  background-color: white;
+  display: flex;
+    justify-content: center;
+  align-items: center;
+  background-color: #6261cc;
+  color: #f3f4f7;
+  width: 50px;
+  height: 50px;
   border: none;
   font-size: 2em;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ArrowButton:hover {
+  background-color: #4f4eb2; /* A darker shade of the original color */
 }
 
 .ArrowButton.Left {
@@ -171,6 +189,7 @@ ul li {
   display: flex;
   justify-content: center;
   gap: 20px; /* This will give some space between the buttons */
+  padding: 0 20px; /* Adjust the padding as needed */
 }
 
 .UsersPlaceholder {
@@ -191,7 +210,7 @@ ul li {
 }
 
 .modal-table th, .modal-table td {
-  border: 1px solid black;
+  border: 3px solid #212631;
 }
 
 .modal-content {
@@ -199,7 +218,8 @@ ul li {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white; /* Change the background color to white */
+  background: #212631; /* Change the background color to white */
+  color: #f3f4f7;
   border-radius: 10px; /* Make the modal a rounded rectangle */
   width: 80%; /* Set the width of the modal */
   max-width: 500px; /* Set a maximum width for the modal */
@@ -210,40 +230,42 @@ ul li {
 
 .modal-close-button {
   position: absolute; /* Position the button at the top right of the modal */
-  top: 10px;
+  top: 5px;
   right: 10px;
   background: none; /* Remove the default background */
   border: none; /* Remove the default border */
   font-size: 1.5em; /* Increase the font size */
   cursor: pointer; /* Change the cursor when hovering over the button */
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
   display: flex; /* Enable flexbox */
   justify-content: center; /* Center the content horizontally */
   align-items: center;
-  background-color: red;
+  background-color: #edad21;
 }
 
 .modal-close-button:hover {
-  background-color: rgba(1, 0, 0, 0.5); /* Slight highlight on hover */
+  background-color: #edad25; /* Slight highlight on hover */
 }
 
 .UsersTable {
-  margin: auto; /* Center the table */
   padding: 20px; /* Add padding */
   border-collapse: collapse; /* Remove space between borders */
+  margin: auto;
 }
 
 .UsersTable th, .UsersTable td {
-  border: 1px solid black; /* Add lines to denote rows and columns */
+  border: 3px solid #212631; /* Add lines to denote rows and columns */
   padding: 10px; /* Add padding inside cells */
 }
 .UserText{
   color: white;
 }
 .UsersTable{
-  width: 100%;
+  width: 90%;
 }
 .ViewKeyButton{
   width: 40%;
+  background-color: #3d99f5;
 }

@@ -90,13 +90,11 @@ function KeyRequests() {
         <div className="KeyRequestInfo">
           <h1>Key Requests</h1>
           {keyRequests[currentIndex] && (
-            <>
-              <p>Request ID: {keyRequests[currentIndex].request_id}</p>
-              <p>User ID: {keyRequests[currentIndex].user_id}</p>
-              <p>Request Reason: {keyRequests[currentIndex].request_reason}</p>
-              <p>Request Tier: {keyRequests[currentIndex].request_tier}</p>
-              <p>Username: {keyRequests[currentIndex].username}</p>
-            </>
+              <>
+                <p>Username: {keyRequests[currentIndex].username}</p>
+                <p>Request Reason: {keyRequests[currentIndex].request_reason}</p>
+                <p>Request Tier: {keyRequests[currentIndex].request_tier}</p>
+              </>
           )}
         </div>
         <div className="Approval">
@@ -108,15 +106,11 @@ function KeyRequests() {
         <button
           className="ArrowButton Left"
           onClick={() => handleArrowClick("left")}
-        >
-          ←
-        </button>
+        >←</button>
         <button
           className="ArrowButton Right"
           onClick={() => handleArrowClick("right")}
-        >
-          →
-        </button>
+        >→</button>
       </div>
     </div>
   );

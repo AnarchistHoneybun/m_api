@@ -51,9 +51,9 @@ function Dashboard() {
   return (
       <div>
           <div className="ChipRow">
-              <Chip color="#30475E" header="Total Users" value={totalUsers}/>
-              <Chip color="#30475E" header="Total Bandwith" value={totalBandwidth}/>
-              <Chip color="#30475E" header="Total Requests" value={totalRequests}/>
+              <Chip color="#3d99f5" header="Total Users" value={totalUsers}/>
+              <Chip color="#db5d5d" header="Total Bandwith" value={totalBandwidth}/>
+              <Chip color="#249542" header="Total Requests" value={totalRequests}/>
           </div>
           <div className="ChartPlaceholder">
                 <BubbleChart/>

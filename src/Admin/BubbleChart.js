@@ -8,6 +8,10 @@ function BubbleChart() {
   // Create a color map for the users
   const userColorMap = {};
 
+  // Define your two colors
+  const color1 = '#249542'; // replace with your first hex code
+  const color2 = '#edad21'; // replace with your second hex code
+
   useEffect(() => {
     async function fetchData() {
       const { data, error } = await supabase.rpc("get_call_counts");
@@ -19,7 +23,7 @@ function BubbleChart() {
           datasets: data.map((item, index) => {
             // If the user does not have a color yet, assign a random color
             if (!userColorMap[item.username]) {
-              userColorMap[item.username] = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.6)`;
+              userColorMap[item.username] = Math.random() > 0.5 ? color1 : color2;
             }
 
             return {
@@ -42,12 +46,28 @@ function BubbleChart() {
     <Bubble 
       data={chartData} 
       options={{
+        layout: {
+          padding: {
+            left: 20,
+            right: 20,
+            top: 50,
+            bottom: 20
+          }
+        },
         scales: {
             y: {
               display: false,
+              padding: {
+                top: 10, // Add padding to the top
+                bottom: 10, // Add padding to the bottom
+              },
             },
             x: {
-                display: true,
+                display: false,
+              padding: {
+                top: 10, // Add padding to the top
+                bottom: 10, // Add padding to the bottom
+              },
             }
           },
           plugins: {

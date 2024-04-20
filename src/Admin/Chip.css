@@ -1,8 +1,25 @@
 .Chip {
   flex-grow: 1;
   height: 170px;
-  color: white;
-text-align: center;
+  color: #f3f4f7;
+text-align: left;
   margin: 10px;
-    border-radius: 25px;
+    border-radius: 10px;
+  position: relative;
+}
+
+.Graph {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.ChipText {
+  position: relative;
+  color: #f3f4f7;
+  z-index: 1;
+  padding: 10px;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5); /* Add this line */
 }

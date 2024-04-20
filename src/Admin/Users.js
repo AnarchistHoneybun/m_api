@@ -101,7 +101,7 @@ function Users() {
             ))}
             </tbody>
           </table>
-          <button onClick={closeModal} className="modal-close-button">X</button> {/* Change "Close" to "X" */}
+          <button onClick={closeModal} className="modal-close-button"></button> {/* Change "Close" to "X" */}
         </Modal>
       </div>
   );
