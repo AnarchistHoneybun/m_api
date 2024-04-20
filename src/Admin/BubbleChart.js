@@ -9,8 +9,8 @@ function BubbleChart() {
   const userColorMap = {};
 
   // Define your two colors
-  const color1 = '#249542'; // replace with your first hex code
-  const color2 = '#edad21'; // replace with your second hex code
+  const color1 = 'rgba(36, 149, 66, 0.5)'; // replace with your first hex code
+  const color2 = 'rgba(237, 173, 33, 0.5)'; // replace with your second hex code
 
   useEffect(() => {
     async function fetchData() {
