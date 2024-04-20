@@ -32,9 +32,6 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (username && password) {
-      // setFormSubmitted(true);
-      // setLoggedInUser({ username, role: toggle ? 'Admin' : 'User' });
-      // const hashedPassword = SHA256(password).toString();
       const hashedPassword = password;
       console.log(toggle);
       if (!toggle) {
