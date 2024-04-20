@@ -38,9 +38,9 @@ function KeyRequests() {
   async function handleDenyClick() {
     const currentRequest = keyRequests[currentIndex];
     const { error } = await supabase
-        .from('key_request')
-        .delete()
-        .eq('request_id', currentRequest.request_id);
+      .from("key_request")
+      .delete()
+      .eq("request_id", currentRequest.request_id);
 
     if (error) {
       console.error("Error deleting data:", error);
@@ -51,30 +51,34 @@ function KeyRequests() {
 
   async function handleApproveClick() {
     const currentRequest = keyRequests[currentIndex];
-    const {error: deleteError} = await supabase
-        .from('key_request')
-        .delete()
-        .eq('request_id', currentRequest.request_id);
+    const { error: deleteError } = await supabase
+      .from("key_request")
+      .delete()
+      .eq("request_id", currentRequest.request_id);
 
     if (deleteError) {
       console.error("Error deleting data:", deleteError);
     } else {
-      const apiKey = `${generate({ minLength: 4, maxLength: 7 }).toUpperCase()}-${generate({ minLength: 5, maxLength: 9 }).toUpperCase()}`;
+      const apiKey = `${generate({
+        minLength: 4,
+        maxLength: 7,
+      }).toUpperCase()}-${generate({
+        minLength: 5,
+        maxLength: 9,
+      }).toUpperCase()}`;
       const billingDate = new Date();
       const expiryDate = new Date();
       expiryDate.setFullYear(expiryDate.getFullYear() + 1);
 
-      const {error: insertError} = await supabase
-          .from('api_key')
-          .insert([
-            {
-              key_name: apiKey,
-              user_id: currentRequest.user_id,
-              billing_date: billingDate,
-              expiry_date: expiryDate,
-              tier_id: currentRequest.request_tier
-            },
-          ]);
+      const { error: insertError } = await supabase.from("api_key").insert([
+        {
+          key_name: apiKey,
+          user_id: currentRequest.user_id,
+          billing_date: billingDate,
+          expiry_date: expiryDate,
+          tier_id: currentRequest.request_tier,
+        },
+      ]);
 
       if (insertError) {
         console.error("Error inserting data:", insertError);
@@ -89,17 +93,35 @@ function KeyRequests() {
       <div className="KeyRequestPlaceholder">
         <div className="KeyRequestInfo">
           <h1>Key Requests</h1>
-          {keyRequests[currentIndex] && (
+          {keyRequests.length ? (
+            keyRequests[currentIndex] && (
               <>
-                <p>Username: {keyRequests[currentIndex].username}</p>
-                <p>Request Reason: {keyRequests[currentIndex].request_reason}</p>
+                <p>Request ID: {keyRequests[currentIndex].request_id}</p>
+                <p>User ID: {keyRequests[currentIndex].user_id}</p>
+                <p>
+                  Request Reason: {keyRequests[currentIndex].request_reason}
+                </p>
                 <p>Request Tier: {keyRequests[currentIndex].request_tier}</p>
+                <p>Username: {keyRequests[currentIndex].username}</p>
               </>
+            )
+          ) : (
+            <>No key requests pending</>
           )}
         </div>
         <div className="Approval">
-          <button className="ApprovalButton DenyRequest" onClick={handleDenyClick}>Deny</button>
-          <button className="ApprovalButton ApproveRequest" onClick={handleApproveClick}>Approve</button>
+          <button
+            className="ApprovalButton DenyRequest"
+            onClick={handleDenyClick}
+          >
+            Deny
+          </button>
+          <button
+            className="ApprovalButton ApproveRequest"
+            onClick={handleApproveClick}
+          >
+            Approve
+          </button>
         </div>
       </div>
       <div className="ArrowButtons">

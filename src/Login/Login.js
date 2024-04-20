@@ -60,18 +60,25 @@ const Login = () => {
           if (res.error) {
             toast(res.error.message, { type: "error" });
           } else {
-            console.log(res);
             if (res.data.length < 1) {
               toast("Invalid user", { type: "error" });
             } else {
-              res = await supabase.auth.signInWithPassword({
-                email: res.data[0].email,
-                password: res.data[0].password,
-              });
-              if (res.error) {
-                toast(res.error.message, { type: "error" });
+              let admin_data = await supabase
+                .from("admin")
+                .select("*")
+                .eq("user_id", res.data[0].user_id);
+              if (admin_data.data.length < 1) {
+                toast("User is not an admin", { type: "error" });
               } else {
-                navigate("/dashboard");
+                res = await supabase.auth.signInWithPassword({
+                  email: res.data[0].email,
+                  password: res.data[0].password,
+                });
+                if (res.error) {
+                  toast(res.error.message, { type: "error" });
+                } else {
+                  navigate("/dashboard");
+                }
               }
             }
           }
