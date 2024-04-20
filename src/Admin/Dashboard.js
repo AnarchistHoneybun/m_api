@@ -13,7 +13,6 @@ function Dashboard() {
   useEffect(() => {
     async function fetchTotalUsers() {
       const { data, count, error } = await supabase.from("users").select('*', { count: 'exact', head: true });
-      console.log(data);
       if (error) {
         console.error('Error fetching total users:', error);
       } else {
@@ -26,7 +25,6 @@ function Dashboard() {
   useEffect(() => {
     async function fetchTotalBandwidth() {
       const { data, error } = await supabase.from('api_call').select('call_metric.sum()');
-      console.log(data);
       if (error) {
         console.error('Error fetching total bandwidth:', error);
       } else {
@@ -47,7 +45,6 @@ function Dashboard() {
     }
     fetchTotalRequests();
   }, []);
-
   return (
       <div>
           <div className="ChipRow">
