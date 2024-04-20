@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import supabase from "../lib/supabase-client";
 import { generate, count } from "random-words";
 import {CircleCheckBig, CircleX, ArrowRight, ArrowLeft} from "lucide-react"
+import {toast, ToastContainer} from "react-toastify";
 
 function KeyRequests() {
   const [keyRequests, setKeyRequests] = useState([]);
@@ -71,7 +72,7 @@ function KeyRequests() {
       const expiryDate = new Date();
       expiryDate.setFullYear(expiryDate.getFullYear() + 1);
 
-      const { error: insertError } = await supabase.from("api_key").insert([
+      const { error } = await supabase.from("api_key").insert(
         {
           key_name: apiKey,
           user_id: currentRequest.user_id,
@@ -79,10 +80,10 @@ function KeyRequests() {
           expiry_date: expiryDate,
           tier_id: currentRequest.request_tier,
         },
-      ]);
+      );
 
-      if (insertError) {
-        console.error("Error inserting data:", insertError);
+      if (error) {
+        toast(error.message, {type: "error"});
       } else {
         getData(); // Fetch the data again after approval
       }
@@ -141,6 +142,7 @@ function KeyRequests() {
           onClick={() => handleArrowClick("right")}
         ><ArrowRight/></button>
       </div>
+      <ToastContainer/>
     </div>
   );
 }

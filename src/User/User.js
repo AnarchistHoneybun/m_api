@@ -4,6 +4,7 @@ import supabase from '../lib/supabase-client';
 import './User.css';
 import BuyKeyModal from "./BuyKeyModal";
 import { LogOut, ShoppingBasket,ArrowBigUpDash } from "lucide-react";
+import {toast, ToastContainer} from "react-toastify";
 
 function User() {
   const [selectedApiKey, setSelectedApiKey] = useState("");
@@ -52,7 +53,7 @@ function User() {
 
   const handleMakeRequest = async () => {
     if (!selectedApiKey || !selectedEndpoint) {
-      alert('Please select both an API Key and an Endpoint.');
+      toast('Please select both an API Key and an Endpoint.', {type: "error"});
       return;
     }
 
@@ -99,9 +100,9 @@ function User() {
     ]);
 
     if (error) {
-      console.error("Error inserting new API call:", error);
+      toast(error.message, {type: "error"});
     } else {
-      alert("API call successfully made!");
+      toast("API call successfully made!", {type: "success"});
     }
   };
 
@@ -126,9 +127,9 @@ function User() {
         ]);
 
     if (error) {
-      console.error('Error inserting new key request:', error);
+      toast(error.message, {type: "error"});
     } else {
-      alert('Key request successfully made!');
+      toast("Key request successfully made!", {type: "success"});
     }
   };
 
@@ -185,6 +186,7 @@ function User() {
           <div className="center">Make a New Request</div>
         </button>
       </main>
+      <ToastContainer/>
     </div>
   );
 }
