@@ -91,3 +91,12 @@
 .modal {
   z-index: 20;
 }
+.centerContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.center{
+  margin-left: 3px;
+  margin-right: 3px;
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import supabase from "../lib/supabase-client";
 import { generate, count } from "random-words";
+import {CircleCheckBig, CircleX, ArrowRight, ArrowLeft} from "lucide-react"
 
 function KeyRequests() {
   const [keyRequests, setKeyRequests] = useState([]);
@@ -114,13 +115,19 @@ function KeyRequests() {
             className="ApprovalButton DenyRequest"
             onClick={handleDenyClick}
           >
-            Deny
+            <CircleX/>
+            <div>
+              Deny
+            </div>
           </button>
           <button
             className="ApprovalButton ApproveRequest"
             onClick={handleApproveClick}
           >
-            Approve
+            <CircleCheckBig/>
+            <div>
+              Approve
+            </div>
           </button>
         </div>
       </div>
@@ -128,11 +135,11 @@ function KeyRequests() {
         <button
           className="ArrowButton Left"
           onClick={() => handleArrowClick("left")}
-        >←</button>
+        ><ArrowLeft/></button>
         <button
           className="ArrowButton Right"
           onClick={() => handleArrowClick("right")}
-        >→</button>
+        ><ArrowRight/></button>
       </div>
     </div>
   );
