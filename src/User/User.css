@@ -87,3 +87,7 @@
 .request-button:hover {
   background-color: #4f4e9f;
 }
+
+.modal {
+  z-index: 20;
+}

@@ -2,6 +2,7 @@ import React, { useState , useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import supabase from '../lib/supabase-client';
 import './User.css';
+import BuyKeyModal from "./BuyKeyModal";
 
 function User() {
   const [selectedApiKey, setSelectedApiKey] = useState('');
@@ -10,6 +11,7 @@ function User() {
   const [userName, setUserName] = useState('');
   const [apiKeys, setApiKeys] = useState([]);
   const [endpoints, setEndpoints] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -96,6 +98,33 @@ function User() {
     }
   };
 
+  const handleBuyKey = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalSubmit = async (selectedTier, requestReason) => {
+    let res = await supabase.auth.getUser();
+    res = await supabase.from('users').select('user_id').eq('email', res.data.user.email);
+
+    const user_id = res.data[0].user_id;
+
+    const { error } = await supabase
+        .from('key_request')
+        .insert([
+          {
+            user_id: user_id,
+            request_reason: requestReason,
+            request_tier: selectedTier
+          },
+        ]);
+
+    if (error) {
+      console.error('Error inserting new key request:', error);
+    } else {
+      alert('Key request successfully made!');
+    }
+  };
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate('/');
@@ -107,7 +136,8 @@ function User() {
           <div className="header-content">
             <div className="hello-user">Hello {userName}</div>
             <div className="header-buttons">
-              <button className="buy-key">Buy Key</button>
+              <button className="buy-key" onClick={handleBuyKey}>Buy Key</button>
+              <BuyKeyModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={handleModalSubmit}/>
               <button className="logout" onClick={handleLogout}>Log Out</button>
             </div>
           </div>
