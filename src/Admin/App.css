@@ -46,10 +46,11 @@
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
 .LogoutContainer:hover {
-  background-color: #396475;
+  background-color: #db5d5d;
 }
 
 .LogoutContainer button {
