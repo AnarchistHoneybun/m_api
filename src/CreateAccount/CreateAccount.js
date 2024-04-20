@@ -60,7 +60,18 @@ const CreateAccount = () => {
         }
       }
       createNewUser(email, password, username, idType, idValue);
-      // Reset fields after successful submission
+    }
+  };
+
+
+  const handleIdTypeChange = (value) => {
+    const lowercaseValue = value.toLowerCase();
+    if (lowercaseValue === "aadhar card") {
+      setIdType("AADHAR");
+    } else if (lowercaseValue === "pan card") {
+      setIdType("PAN");
+    } else {
+      setIdType(value);
     }
   };
 
@@ -82,14 +93,17 @@ const CreateAccount = () => {
         </div>
         <div className="form-group">
           <label htmlFor="idType">ID Type</label>
-          <input
-            type="text"
+          <select
             id="idType"
             value={idType}
-            onChange={(e) => setIdType(e.target.value)}
+            onChange={(e) => handleIdTypeChange(e.target.value)}
             required
             className="input"
-          />
+          >
+            <option value="">Select ID Type</option>
+            <option value="aadhar">Aadhar Card</option>
+            <option value="pan">PAN Card</option>
+          </select>
         </div>
         <div className="form-group">
           <label htmlFor="idValue">ID Value</label>
