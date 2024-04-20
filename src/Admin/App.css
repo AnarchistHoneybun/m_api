@@ -316,3 +316,13 @@ ul li {
   width: 40%;
   background-color: #3d99f5;
 }
+
+.centerContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.center{
+  margin-left: 2px;
+  margin-right: 2px;
+}

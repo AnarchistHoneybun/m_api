@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../index.css";
 import supabase from "../lib/supabase-client";
 import { ToastContainer, toast } from "react-toastify";
-import {SHA256} from "crypto-js";
+import { LogIn, BadgePlus } from "lucide-react";
 
 const Login = () => {
   const canvasRef = useRef();
@@ -165,12 +165,21 @@ const Login = () => {
             <button
               type="submit"
               disabled={!username || password.length < 6 || formSubmitted}
+              className="centerContainer"
             >
-              {formSubmitted ? "Logging In..." : "Login"}
+              <LogIn size={20} className="center" />
+              <div className="center">
+                {formSubmitted ? "Logging In..." : "Login"}
+              </div>
             </button>
             {!toggle && (
-              <button type="button" onClick={handleCreateAccount}>
-                Create Account
+              <button
+                type="button"
+                onClick={handleCreateAccount}
+                className="centerContainer"
+              >
+                <BadgePlus className="center"/>
+                <div className="center">Create Account</div>
               </button>
             )}
           </div>

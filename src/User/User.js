@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import supabase from "../lib/supabase-client";
 import "./User.css";
+import { LogOut, ShoppingBasket,ArrowBigUpDash } from "lucide-react";
 
 function User() {
   const [selectedApiKey, setSelectedApiKey] = useState("");
@@ -113,9 +114,13 @@ function User() {
         <div className="header-content">
           <div className="hello-user">Hello {userName}</div>
           <div className="header-buttons">
-            <button className="buy-key">Buy Key</button>
-            <button className="logout" onClick={handleLogout}>
-              Log Out
+            <button className="buy-key centerContainer">
+              <ShoppingBasket className="center" />
+              <div className="center">Buy Key</div>
+            </button>
+            <button className="logout centerContainer" onClick={handleLogout}>
+              <LogOut className="center" />
+              <div className="center">Log Out</div>
             </button>
           </div>
         </div>
@@ -145,8 +150,9 @@ function User() {
             ))}
           </select>
         </div>
-        <button className="request-button" onClick={handleMakeRequest}>
-          Make a New Request
+        <button className="request-button centerContainer" onClick={handleMakeRequest}>
+          <ArrowBigUpDash className="center"/>
+          <div className="center">Make a New Request</div>
         </button>
       </main>
     </div>

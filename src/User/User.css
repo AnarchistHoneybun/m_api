@@ -87,3 +87,12 @@
 .request-button:hover {
   background-color: #4f4e9f;
 }
+.centerContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.center{
+  margin-left: 3px;
+  margin-right: 3px;
+}
