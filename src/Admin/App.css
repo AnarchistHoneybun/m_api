@@ -15,13 +15,45 @@
   align-items: center; /* Center the text vertically */
   width: 150px; /* Set a fixed width */
   height: 40px; /* Set a fixed height */
-  color: white;
+  color: #f3f4f7;
   background-color: #30475E;
   padding: 10px 20px;
   margin: 10px 0;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+}
+
+.Bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  padding: 0 20px; /* Adjust the padding as needed */
+}
+
+.LogoutContainer {
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center the text horizontally */
+  align-items: center; /* Center the text vertically */
+  width: 150px; /* Set a fixed width */
+  height: 40px; /* Set a fixed height */
+  color: #f3f4f7;
+  background-color: #30475E;
+  padding: 10px 20px;
+  margin: 10px 0;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.LogoutContainer:hover {
+  background-color: #396475;
+}
+
+.LogoutContainer button {
+  outline: none;
 }
 
 .Sidebar ul li a:hover {
