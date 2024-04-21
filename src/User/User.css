@@ -94,13 +94,13 @@
   background-color: #4f4e9f;
 }
 
-.modal {
+.modal, .payment-modal {
   z-index: 20;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   position: fixed;
   top: 0;
   left: 0;
@@ -108,18 +108,11 @@
   height: 100%;
 }
 
-.payment-modal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 20;
+.modal form, .payment-modal form {
+  background-color: #212631;
+  padding: 20px;
+  border-radius: 10px;
+  color: #f3f4f7;
 }
 
 .centerContainer{
