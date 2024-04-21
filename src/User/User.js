@@ -136,6 +136,7 @@ function User() {
       toast(error.message, {type: "error"});
     } else {
       toast("Key request successfully made!", {type: "success"});
+
     }
   };
 

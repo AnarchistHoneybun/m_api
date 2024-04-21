@@ -18,6 +18,8 @@ function BuyKeyModal({ isOpen, onClose, onSubmit }) {
 
   const handleSubmit = () => {
     onSubmit(selectedTier, requestReason);
+    setSelectedTier(''); // reset selectedTier
+    setRequestReason('');
     onClose();
   };
 

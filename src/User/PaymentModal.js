@@ -29,6 +29,9 @@ function PaymentModal({ isOpen, onClose }) {
       toast(error.message, {type: "error"});
     } else {
       toast("Payment information successfully added!", {type: "success"});
+      setCardholderName(''); // reset cardholderName
+      setCardNumber(''); // reset cardNumber
+      setPhoneNumber('');
       onClose();
     }
   };
