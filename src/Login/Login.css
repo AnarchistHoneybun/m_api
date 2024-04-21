@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #f3f4f7;
 }
 
 .App-link {
@@ -40,7 +40,7 @@ button:disabled{
   background: gray;
 }
 button:disabled:hover{
-  background: gray;
+  background: #db5d5d;
 }
 .centerContainer{
   display: flex;
@@ -55,4 +55,5 @@ button:disabled:hover{
 .form-container {
   /* Existing styles */
   min-height: 400px; /* Set a minimum height for the form container */
+  color: #212631;
 }

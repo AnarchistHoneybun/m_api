@@ -131,7 +131,6 @@ const Login = () => {
           style={{ width: "1000px", height: "1000px" }}
         />
       </div>
-      <h1 className="header">API SERVER</h1>
       {loggedInUser ? (
         <div className="welcome">
           <h2>

@@ -49,13 +49,13 @@ body {
 }
 
 .container.admin {
-  color: white;
+  color: #f3f4f7;
   background: linear-gradient(to right, grey, black);
   z-index: 1;
 }
 
 .container.user {
-  color: white;
+  color: #f3f4f7;
   background: linear-gradient(to right, black, grey);
   z-index: 1;
 }
@@ -66,7 +66,7 @@ body {
 }
 
 form {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(243, 244, 247, 0.8);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
@@ -109,7 +109,7 @@ button {
   margin-top: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #3498db;
+  background-color: #6261cc;
   color: #fff;
   font-size: 16px;
   cursor: pointer;
@@ -119,7 +119,7 @@ button {
 
 
 button:hover {
-  background-color: #2980b9;
+  background-color: #4f4ec1;
   
 }
 
