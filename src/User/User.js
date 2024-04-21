@@ -71,13 +71,7 @@ function User() {
       });
       return;
     }
-
-    // Fetch the key_id for the selected API Key
-    const { data: apiKeyData } = await supabase
-      .from("api_key")
-      .select("key_id")
-      .eq("key_name", selectedApiKey);
-    const key_id = apiKeyData[0].key_id;
+    const key_id = selectedApiKey;
 
     // Fetch the endpoint_id for the selected Endpoint
     const { data: endpointData } = await supabase
