@@ -59,7 +59,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .dropdown-container {
@@ -69,6 +69,7 @@
   width: 100%;
   padding: 0 20px;
   margin-bottom: 20px;
+  margin-top: 150px;
 }
 
 .dropdown {
@@ -129,4 +130,30 @@
 .center{
   margin-left: 3px;
   margin-right: 3px;
+}
+
+.metrics-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 20px;
+  color: #f3f4f7;
+  width: 100%;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 30%;
+}
+
+.metric-title {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.metric-value {
+  font-size: medium;
 }

@@ -159,70 +159,84 @@ function User() {
   };
 
   return (
-    <div className="app">
-      <header className="app-header">
-        <div className="header-content">
-          <div className="hello-user">Hello {userName}</div>
-          <div className="header-buttons">
-            <button className="payment centerContainer" onClick={handlePayment}>
-              <Coins className="center" />
-              <div className="center">Payment</div>
-            </button>
-            <PaymentModal
-              isOpen={isPaymentModalOpen}
-              onClose={() => setIsPaymentModalOpen(false)}
-            />
-            <button className="buy-key centerContainer" onClick={handleBuyKey}>
-              <ShoppingBasket className="center" />
-              <div className="center">Buy Key</div>
-            </button>
-            <BuyKeyModal
-              isOpen={isModalOpen}
-              onClose={() => setIsModalOpen(false)}
-              onSubmit={handleModalSubmit}
-            />
-            <button className="logout centerContainer" onClick={handleLogout}>
-              <LogOut className="center" />
-              <div className="center">Log Out</div>
-            </button>
+      <div className="app">
+        <header className="app-header">
+          <div className="header-content">
+            <div className="hello-user">Hello {userName}</div>
+            <div className="header-buttons">
+              <button className="payment centerContainer" onClick={handlePayment}>
+                <Coins className="center"/>
+                <div className="center">Payment</div>
+              </button>
+              <PaymentModal
+                  isOpen={isPaymentModalOpen}
+                  onClose={() => setIsPaymentModalOpen(false)}
+              />
+              <button className="buy-key centerContainer" onClick={handleBuyKey}>
+                <ShoppingBasket className="center"/>
+                <div className="center">Buy Key</div>
+              </button>
+              <BuyKeyModal
+                  isOpen={isModalOpen}
+                  onClose={() => setIsModalOpen(false)}
+                  onSubmit={handleModalSubmit}
+              />
+              <button className="logout centerContainer" onClick={handleLogout}>
+                <LogOut className="center"/>
+                <div className="center">Log Out</div>
+              </button>
+            </div>
           </div>
-        </div>
-      </header>
-      <main className="content">
-        <div className="dropdown-container">
-          <select
-            className="dropdown"
-            onChange={(e) => setSelectedApiKey(e.target.value)}
+        </header>
+        <main className="content">
+          <div className="metrics-container">
+            <div className="key-metric">
+              <div className="metric-title">Total Keys</div>
+              <div className="metric-value">{totalKeys}</div>
+            </div>
+            <div className="band-metric">
+              <div className="metric-title">Total Bandwidth</div>
+              <div className="metric-value">{totalBandwidth}</div>
+            </div>
+            <div className="request-metric">
+              <div className="metric-title">Total Requests</div>
+              <div className="metric-value">{totalRequests}</div>
+            </div>
+          </div>
+          <div className="dropdown-container">
+            <select
+                className="dropdown"
+                onChange={(e) => setSelectedApiKey(e.target.value)}
+            >
+              <option value="">Select an API Key</option>
+              {apiKeys.map((key, index) => (
+                  <option key={index} value={key.key_id}>
+                    {key.key_name}
+                  </option>
+              ))}
+            </select>
+            <select
+                className="dropdown"
+                onChange={(e) => setSelectedEndpoint(e.target.value)}
+            >
+              <option value="">Select an Endpoint</option>
+              {endpoints.map((endpoint, index) => (
+                  <option key={index} value={endpoint.endpoint_id}>
+                    {endpoint.endpoint_name}
+                  </option>
+              ))}
+            </select>
+          </div>
+          <button
+              className="request-button centerContainer"
+              onClick={handleMakeRequest}
           >
-            <option value="">Select an API Key</option>
-            {apiKeys.map((key, index) => (
-              <option key={index} value={key.key_id}>
-                {key.key_name}
-              </option>
-            ))}
-          </select>
-          <select
-            className="dropdown"
-            onChange={(e) => setSelectedEndpoint(e.target.value)}
-          >
-            <option value="">Select an Endpoint</option>
-            {endpoints.map((endpoint, index) => (
-              <option key={index} value={endpoint.endpoint_id}>
-                {endpoint.endpoint_name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <button
-          className="request-button centerContainer"
-          onClick={handleMakeRequest}
-        >
-          <ArrowBigUpDash className="center" />
-          <div className="center">Make a New Request</div>
-        </button>
-      </main>
-      <ToastContainer />
-    </div>
+            <ArrowBigUpDash className="center"/>
+            <div className="center">Make a New Request</div>
+          </button>
+        </main>
+        <ToastContainer/>
+      </div>
   );
 }
 
