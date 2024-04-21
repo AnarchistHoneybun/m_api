@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import supabase from '../lib/supabase-client';
 import './User.css';
 import BuyKeyModal from "./BuyKeyModal";
-import { LogOut, ShoppingBasket,ArrowBigUpDash } from "lucide-react";
+import PaymentModal from "./PaymentModal";
+import { LogOut, ShoppingBasket,ArrowBigUpDash, Coins } from "lucide-react";
 import {toast, ToastContainer} from "react-toastify";
 
 function User() {
@@ -14,6 +15,7 @@ function User() {
   const [apiKeys, setApiKeys] = useState([]);
   const [endpoints, setEndpoints] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const navigate = useNavigate();
 
   async function fetchApiKeysAndEndpoints() {
@@ -110,6 +112,10 @@ function User() {
     setIsModalOpen(true);
   };
 
+  const handlePayment = () => {
+    setIsPaymentModalOpen(true);
+  };
+
   const handleModalSubmit = async (selectedTier, requestReason) => {
     let res = await supabase.auth.getUser();
     res = await supabase.from('users').select('user_id').eq('email', res.data.user.email);
@@ -144,13 +150,18 @@ function User() {
         <div className="header-content">
           <div className="hello-user">Hello {userName}</div>
           <div className="header-buttons">
+            <button className="payment centerContainer" onClick={handlePayment}>
+              <Coins className="center"/>
+              <div className="center">Payment</div>
+            </button>
+            <PaymentModal isOpen={isPaymentModalOpen} onClose={() => setIsPaymentModalOpen(false)} />
             <button className="buy-key centerContainer" onClick={handleBuyKey}>
-              <ShoppingBasket className="center" />
+              <ShoppingBasket className="center"/>
               <div className="center">Buy Key</div>
             </button>
-              <BuyKeyModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={handleModalSubmit}/>
+            <BuyKeyModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={handleModalSubmit}/>
             <button className="logout centerContainer" onClick={handleLogout}>
-              <LogOut className="center" />
+              <LogOut className="center"/>
               <div className="center">Log Out</div>
             </button>
           </div>
@@ -159,8 +170,8 @@ function User() {
       <main className="content">
         <div className="dropdown-container">
           <select
-            className="dropdown"
-            onChange={(e) => setSelectedApiKey(e.target.value)}
+              className="dropdown"
+              onChange={(e) => setSelectedApiKey(e.target.value)}
           >
             <option value="">Select an API Key</option>
             {apiKeys.map((key, index) => (

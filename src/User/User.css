@@ -31,7 +31,8 @@
   gap: 10px;
 }
 
-.buy-key, .logout {
+
+.buy-key, .logout, .payment {
   padding: 10px 20px;
   width: 150px;
   height: 50px;
@@ -47,6 +48,10 @@
 
 .logout:hover {
     background-color: #db5d5d;
+}
+
+.payment:hover {
+    background-color: #edad21;
 }
 
 .content {
@@ -91,6 +96,21 @@
 .modal {
   z-index: 20;
 }
+
+.payment-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+}
+
 .centerContainer{
   display: flex;
   justify-content: center;
