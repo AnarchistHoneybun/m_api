@@ -52,3 +52,7 @@ button:disabled:hover{
   margin-right: 3px;
 }
 
+.form-container {
+  /* Existing styles */
+  min-height: 400px; /* Set a minimum height for the form container */
+}
