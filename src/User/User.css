@@ -69,7 +69,7 @@
   width: 100%;
   padding: 0 20px;
   margin-bottom: 20px;
-  margin-top: 150px;
+  margin-top: 130px;
 }
 
 .dropdown {
@@ -137,6 +137,7 @@
   flex-direction: row;
   justify-content: space-around;
   padding: 20px;
+  margin-top: 30px;
   color: #f3f4f7;
   width: 100%;
 }
@@ -150,10 +151,42 @@
 }
 
 .metric-title {
-  font-size: larger;
+  font-size: 30px;
   font-weight: bold;
+  color: #f3f4f7;
 }
 
 .metric-value {
-  font-size: medium;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.key-metric:hover {
+  text-shadow: 0 0 10px #edad21; /* adjust as needed */
+  transition: text-shadow 0.3s ease-in-out;
+  cursor: default;
+}
+
+.key-metric {
+  color: #edad21;
+}
+
+.band-metric {
+  color: #db5d5d;
+}
+
+.band-metric:hover {
+  text-shadow: 0 0 10px #db5d5d; /* adjust as needed */
+  transition: text-shadow 0.3s ease-in-out;
+  cursor: default;
+}
+
+.request-metric {
+    color: #3d99f5;
+}
+
+.request-metric:hover {
+  text-shadow: 0 0 10px #3d99f5; /* adjust as needed */
+  transition: text-shadow 0.3s ease-in-out;
+  cursor: default;
 }
